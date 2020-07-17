@@ -78,10 +78,12 @@ Sleep 50
 Run, http://www.google.com/search?q=%clipboard%
 Return
 
-; Types out copied text
+; Opens selected URL
 
 ^+Capslock::
-SendRaw, %clipboard%
+Send, ^c
+Sleep 50
+Run, %clipboard%
 Return
 
 ; Locks computer and turns off monitor
