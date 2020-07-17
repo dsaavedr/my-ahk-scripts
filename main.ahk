@@ -1,4 +1,4 @@
-/*
+﻿/*
     #: Windows key
     +: Shift
     ^: Ctrl
@@ -44,8 +44,8 @@ Return
 
 ; Guillemets
 
-+^SC033::Send {�}		; SHIFT + CTRL + ","
-+^SC034::Send {�}		; SHIFT + CTRL + "."
++^SC033::Send {«}		; SHIFT + CTRL + ","
++^SC034::Send {»}		; SHIFT + CTRL + "."
 
 ; Change selected text to specific font
 
@@ -70,25 +70,6 @@ Return
   WinMove, %Title%,, (A_ScreenWidth-Width)/2, (A_ScreenHeight-Height)/2
 Return
 
-; Move active window to second desktop (indifferent between left and right keys; assumes only two desktops)	
-
-#^+Left::
-#^+Right::
-Send #{tab}         ; WIN+TAB=Open the desktop view
-Sleep 500
-Send +{F10} ; SHIFT+F10=context menue. M=move. Enter for the first desktop in the list.
-Sleep 750
-Send {Down}
-Sleep 100
-Send {Down}
-Sleep 350
-Send {Right}
-Sleep 250
-Send {Enter}
-Sleep 100
-Send #{tab}   	    ; WIN+TAB=Close the desktop view
-return
-
 ; Copies selected text and searches Google for it	
 
 +Capslock::
@@ -112,31 +93,6 @@ Sleep, 500
 SendMessage,0x112,0xF170,2,,Program Manager
 return
 
-; Enclosing in quotes
-
-^'::EncQuote("'")
-^+'::EncQuote("""")
-
-EncQuote(q)
-{
-  oldClipboard = %clipboard%
-  Clipboard := 
-  SendInput ^c
-  Sleep 100
-  if (Clipboard = "")
-  {  
-    TrayTip, Enclose in quote, Nothing copied - aborting
-	SetTimer, HideTrayTip, 2000
-  }
-  else
-  {
-    ;Clipboard = %q%%clipboard%%q%
-    ;Sleep 200
-    ;SendInput ^v
-    SendInput %q%%clipboard%%q%
-  }
-  Clipboard = %oldClipboard%
-}
 
 HideTrayTip() {
     TrayTip  ; Attempt to hide it the normal way.
