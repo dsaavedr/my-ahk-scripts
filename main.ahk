@@ -56,6 +56,13 @@ Send FF
 Send Century Gothic {tab} 10 {enter}
 Return
 
+; Get msgbox with window title
+
+^!p::
+WinGetTitle, Title, A
+MsgBox, The active window is "%Title%"
+return
+
 ::hh1::<h1></h1>
 ::hh2::<h2></h2>
 ::hh3::<h3></h3>
@@ -108,10 +115,10 @@ HideTrayTip() {
 ; Media shortcuts, inactive when VSCode is active
 
 #IfWinNotActive Visual Studio Code
-  ^!Left::           		; CTRL+ALT+LEFT for previous
+  ^!Left::           			; CTRL+ALT+LEFT for previous
   send, {Media_Prev}
   Return
-  ^!Right::  			      ; CTRL+ALT+RIGHT for next
+  ^!Right::  			      	; CTRL+ALT+RIGHT for next
   send, {Media_Next}
   Return
   ^!Space::			        ; CTRL+ALT+SPACE for pause/play
