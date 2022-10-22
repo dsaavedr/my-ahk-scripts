@@ -15,6 +15,13 @@ If !WinExist("games.ahk")
   Return
 }
 
+; Get msgbox with window title
+
+^!p::
+WinGetTitle, Title, A
+MsgBox, The active window is "%Title%"
+return
+
 ; TEST
 /*
 ^k::
@@ -55,13 +62,6 @@ Sleep 1
 Send FF
 Send Century Gothic {tab} 10 {enter}
 Return
-
-; Get msgbox with window title
-
-^!p::
-WinGetTitle, Title, A
-MsgBox, The active window is "%Title%"
-return
 
 ::hh1::<h1></h1>
 ::hh2::<h2></h2>
@@ -110,6 +110,20 @@ HideTrayTip() {
         Sleep 200  ; It may be necessary to adjust this sleep.
         Menu Tray, Icon
     }
+}
+
+If WinExist(ahk_exe Dofus.exe)
+{
+  XButton2::
+  Send, !{Esc}
+  Return
+}
+
+If WinExist("VALORANT")
+{
+  !XButton2::
+  Send, {y}
+  Return
 }
 
 ; Media shortcuts, inactive when VSCode is active
