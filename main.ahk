@@ -112,19 +112,24 @@ HideTrayTip() {
     }
 }
 
-If WinExist(ahk_exe Dofus.exe)
-{
-  XButton2::
-  Send, !{Esc}
-  Return
-}
+#IfWinActive ahk_exe Dofus.exe
+XButton2::
+Send, !{Esc}
+return
 
-If WinExist("VALORANT")
-{
-  !XButton2::
-  Send, {y}
-  Return
-}
+#IfWinActive VALORANT
+!XButton2::
+Send, y
+return
+Numpad0::
+Send, Buen intento, campeón.
+return
+Numpad1::
+Send, Se salwarió.
+return
+Numpad2::
+Send, MeDasSkinxdxdxd
+return
 
 ; Media shortcuts, inactive when VSCode is active
 
